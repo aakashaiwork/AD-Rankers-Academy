@@ -12,7 +12,7 @@
       "supportsTablet": true
     },
     "android": {
-      "package": "com.adrankers.academy"
+      "package": "com.adrankers.academy",
       "adaptiveIcon": {
         "foregroundImage": "./assets/logo.png",
         "backgroundColor": "#ffffff"
