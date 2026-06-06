@@ -74,7 +74,34 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
   };
 
-  const login = async (email: string, password: string) => {
+ const login = async (email: string, password: string) => {
+  const response = await fetch(`${API_URL}/api/login`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      email,
+      password,
+    }),
+  });
+
+  if (!response.ok) {
+    const error = await response.json();
+    throw new Error(error.detail || 'Login failed');
+  }
+
+  const data = await response.json();
+
+  await AsyncStorage.setItem('token', data.token);
+  await AsyncStorage.setItem('user', JSON.stringify(data.user));
+
+  setWebItem('token', data.token);
+  setWebItem('user', JSON.stringify(data.user));
+
+  setToken(data.token);
+  setUser(data.user);
+};
     try {
       // Mock authentication - accept any email/password for demo
       await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate network delay
