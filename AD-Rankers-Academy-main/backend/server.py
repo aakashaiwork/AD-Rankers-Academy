@@ -47,10 +47,7 @@ MONGO_TLS_INSECURE = os.getenv("MONGO_TLS_INSECURE", "false").lower() in ("1", "
 if not MONGO_URL:
     raise RuntimeError("MONGO_URL is not set. Add it to backend/.env")
 
-client = MongoClient(
-    MONGO_URL,
-    ssl=False
-)
+client = MongoClient(MONGO_URL)
 db = client[DB_NAME]
 
 # Collections
