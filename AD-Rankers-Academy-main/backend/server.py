@@ -1,3 +1,9 @@
+@app.get("/")
+async def root():
+    return {
+        "status": "success",
+        "message": "AD Rankers Academy API Running"
+    }
 from fastapi import FastAPI, HTTPException, status, Depends, UploadFile, File, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.exceptions import RequestValidationError
